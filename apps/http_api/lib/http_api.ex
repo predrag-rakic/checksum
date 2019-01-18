@@ -3,16 +3,16 @@ defmodule HttpApi do
   Documentation for HttpApi.
   """
 
-  @doc """
-  Hello world.
+  alias HttpApi.ComputeChecksum
 
-  ## Examples
+  use Plug.Router
 
-      iex> HttpApi.hello
-      :world
+  plug Plug.Logger
+  plug :match
+  plug Plug.Parsers, parsers: [:json], json_decoder: Jason
+  plug :dispatch
 
-  """
-  def hello do
-    :world
+  match _ do
+    send_resp(conn, 400, "oops")
   end
 end
