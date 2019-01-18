@@ -3,6 +3,7 @@ defmodule Digits.Worker do
   Holds digits and performs operations on them.
   """
 
+  @empty_sequence []
   @zero 48
 
   alias Digits.Validator
@@ -10,11 +11,11 @@ defmodule Digits.Worker do
   use GenServer
 
   def start_link(_) do
-    GenServer.start_link(__MODULE__, nil)
+    GenServer.start_link(__MODULE__, nil, name: __MODULE__)
   end
 
   @impl true
-  def init(_), do: {:ok, ""}
+  def init(_), do: {:ok, @empty_sequence}
 
   @doc """
   Hello world.
@@ -25,15 +26,15 @@ defmodule Digits.Worker do
       :world
 
   """
-  def add(new_digits) when is_binary(new_digits) do
-    new_digits_list =
-      new_digits
+  def add(additional_digits) when is_binary(additional_digits) do
+    additional_digits_list =
+      additional_digits
       |> to_charlist()
       |> Enum.map(fn digit -> digit - @zero end)
       |> IO.inspect(label: "SSSSSSSSSSSSSSSS")
 
-    with {:ok, _} <- Validator.validate_digits(new_digits_list) do
-      GenServer.call(__MODULE__, {:add, new_digits_list})
+    with {:ok, _} <- Validator.validate_digits(additional_digits_list) do
+      GenServer.call(__MODULE__, {:add, additional_digits_list})
     end
   end
 
@@ -46,18 +47,19 @@ defmodule Digits.Worker do
   end
 
   @impl true
-  def handle_call(:add, _from, digits) do
-    new_digits = digits
-    {:reply, :ok, new_digits}
+  def handle_call({:add, additional_digits_list}, _from, digits) do
+    new_digits = digits ++ additional_digits_list
+    {:reply, new_digits, new_digits}
   end
 
   @impl true
   def handle_call(:clear, _from, _digits) do
-    {:reply, :ok, ""}
+    {:reply, :ok, @empty_sequence}
   end
 
   @impl true
   def handle_call(:checksum, _from, digits) do
+
     {:reply, :checksum, digits}
   end
 end

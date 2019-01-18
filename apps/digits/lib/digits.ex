@@ -3,16 +3,13 @@ defmodule Digits do
   Documentation for Digits.
   """
 
+  alias Digits.Worker
+
   @doc """
-  Hello world.
-
-  ## Examples
-
-      iex> Digits.hello
-      :world
-
   """
-  def hello do
-    :world
-  end
+  def add(new_digits), do: Worker.add(new_digits)
+
+  def clear, do: Worker.clear()
+
+  def compute_checksum, do: Worker.compute_checksum()
 end
