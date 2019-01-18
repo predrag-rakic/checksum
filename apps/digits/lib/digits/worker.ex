@@ -6,7 +6,7 @@ defmodule Digits.Worker do
   @empty_sequence []
   @zero 48
 
-  alias Digits.Validator
+  alias Digits.{Checksum, Validator}
 
   use GenServer
 
@@ -31,7 +31,6 @@ defmodule Digits.Worker do
       additional_digits
       |> to_charlist()
       |> Enum.map(fn digit -> digit - @zero end)
-      |> IO.inspect(label: "SSSSSSSSSSSSSSSS")
 
     with {:ok, _} <- Validator.validate_digits(additional_digits_list) do
       GenServer.call(__MODULE__, {:add, additional_digits_list})
@@ -60,6 +59,6 @@ defmodule Digits.Worker do
   @impl true
   def handle_call(:checksum, _from, digits) do
 
-    {:reply, :checksum, digits}
+    {:reply, Checksum.compute(digits), digits}
   end
 end

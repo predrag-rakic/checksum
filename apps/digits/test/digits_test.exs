@@ -21,4 +21,8 @@ defmodule DigitsTest do
     assert Digits.compute_checksum() == 0
   end
 
+  test "checksum non emptu sequence" do
+    assert is_list Digits.add("123456")
+    assert Digits.compute_checksum() == 1
+  end
 end
