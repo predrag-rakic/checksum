@@ -18,13 +18,7 @@ defmodule Digits.Worker do
   def init(_), do: {:ok, @empty_sequence}
 
   @doc """
-  Hello world.
-
-  ## Examples
-
-      iex> DigitsChecksum.hello
-      :world
-
+  Append digits
   """
   def add(additional_digits) when is_binary(additional_digits) do
     additional_digits_list =
@@ -37,10 +31,16 @@ defmodule Digits.Worker do
     end
   end
 
+  @doc """
+  Clear the list content
+  """
   def clear do
     GenServer.call(__MODULE__, :clear)
   end
 
+  @doc """
+  Compute checksum
+  """
   def compute_checksum do
     GenServer.call(__MODULE__, :checksum)
   end
