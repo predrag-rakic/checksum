@@ -10,6 +10,7 @@ defmodule HttpApi.Application do
     children = [
       # Starts a worker by calling: HttpApi.Worker.start_link(arg)
       # {HttpApi.Worker, arg},
+      {Plug.Cowboy, scheme: :http, plug: HttpApi}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
