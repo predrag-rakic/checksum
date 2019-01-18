@@ -58,7 +58,6 @@ defmodule Digits.Worker do
 
   @impl true
   def handle_call(:checksum, _from, digits) do
-
     {:reply, Checksum.compute(digits), digits}
   end
 end

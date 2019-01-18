@@ -22,8 +22,7 @@ defmodule Digits.Validator do
     |> Enum.map(fn {_, i} -> i end)
     |> case do
       [] -> {:ok, ""}
-
-      error -> {:error, "Error in position(s): #{inspect error}"}
+      error -> {:error, "Error in position(s): #{inspect(error)}"}
     end
   end
 end

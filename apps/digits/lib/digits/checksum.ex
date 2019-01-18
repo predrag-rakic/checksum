@@ -33,8 +33,8 @@ defmodule Digits.Checksum do
   end
 
   defp crunch({odd_sum, even_sum}) do
-    odd_sum * 3 + even_sum
+    (odd_sum * 3 + even_sum)
     |> rem(10)
-    |> (&(rem(10 - &1, 10))).()
+    |> (&rem(10 - &1, 10)).()
   end
 end

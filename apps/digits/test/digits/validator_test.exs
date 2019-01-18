@@ -9,7 +9,7 @@ defmodule Digits.ValidatorTest do
   end
 
   test "invalid sequence of digits returns error" do
-    assert {:error, msg} =  Validator.validate_digits([-2, 1, 13, 3, 6, 7, 44])
+    assert {:error, msg} = Validator.validate_digits([-2, 1, 13, 3, 6, 7, 44])
     assert String.contains?(msg, "[0, 2, 6]")
   end
 end
