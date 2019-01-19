@@ -3,7 +3,7 @@ defmodule HttpApi do
   Documentation for HttpApi.
   """
 
-  alias HttpApi.{ComputeChecksum, Clear}
+  alias HttpApi.{Add, ComputeChecksum, Clear}
 
   use Plug.Router
 
@@ -15,6 +15,8 @@ defmodule HttpApi do
   get "/checksum", to: ComputeChecksum
 
   delete "/checksum", to: Clear
+
+  patch "/checksum", to: Add
 
   match _ do
     send_resp(conn, 400, "oops")

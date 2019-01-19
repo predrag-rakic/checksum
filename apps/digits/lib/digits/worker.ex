@@ -27,7 +27,7 @@ defmodule Digits.Worker do
       |> Enum.map(fn digit -> digit - @zero end)
 
     with {:ok, _} <- Validator.validate_digits(additional_digits_list) do
-      GenServer.call(__MODULE__, {:add, additional_digits_list})
+      {:ok, GenServer.call(__MODULE__, {:add, additional_digits_list})}
     end
   end
 

@@ -9,8 +9,8 @@ defmodule DigitsTest do
   end
 
   test "add valid sequence" do
-    assert Digits.add("000") == [0, 0, 0]
-    assert Digits.add("11") == [0, 0, 0, 1, 1]
+    assert Digits.add("000") == {:ok, [0, 0, 0]}
+    assert Digits.add("11") == {:ok, [0, 0, 0, 1, 1]}
   end
 
   test "add invalid sequence" do
@@ -22,7 +22,7 @@ defmodule DigitsTest do
   end
 
   test "checksum non emptu sequence" do
-    assert is_list(Digits.add("123456"))
+    assert {:ok, _} = Digits.add("123456")
     assert Digits.compute_checksum() == 1
   end
 end
