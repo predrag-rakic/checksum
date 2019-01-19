@@ -1,4 +1,7 @@
 defmodule HttpApi.ComputeChecksum do
+  @moduledoc """
+  Compute checksum operation controller.
+  """
 
   use Plug.Builder
 

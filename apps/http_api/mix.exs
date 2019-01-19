@@ -31,6 +31,7 @@ defmodule HttpApi.MixProject do
       {:digits, in_umbrella: true},
       {:plug_cowboy, "~> 2.0"},
       {:mox, "~> 0.4.0", only: [:test]},
+      {:credo, "~> 1.0", only: [:dev, :test], runtime: false}
     ]
   end
 end

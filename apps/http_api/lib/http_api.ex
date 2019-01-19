@@ -1,9 +1,9 @@
 defmodule HttpApi do
   @moduledoc """
-  Documentation for HttpApi.
+  Router.
   """
 
-  alias HttpApi.{Add, ComputeChecksum, Clear}
+  alias HttpApi.{Add, Clear, ComputeChecksum}
 
   use Plug.Router
 

@@ -1,4 +1,7 @@
 defmodule HttpApi.Clear do
+  @moduledoc """
+  Clear operation controller.
+  """
 
   use Plug.Builder
 

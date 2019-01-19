@@ -1,4 +1,7 @@
 defmodule HttpApi.Add do
+  @moduledoc """
+  Add operation controller.
+  """
 
   use Plug.Builder
 
