@@ -18,11 +18,11 @@ defmodule DigitsTest do
   end
 
   test "checksum emptu sequence" do
-    assert Digits.compute_checksum() == 0
+    assert Digits.compute_checksum() == {:ok, 0}
   end
 
   test "checksum non emptu sequence" do
     assert {:ok, _} = Digits.add("123456")
-    assert Digits.compute_checksum() == 1
+    assert Digits.compute_checksum() == {:ok, 1}
   end
 end

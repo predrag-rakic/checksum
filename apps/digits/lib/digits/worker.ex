@@ -42,7 +42,10 @@ defmodule Digits.Worker do
   Compute checksum
   """
   def compute_checksum do
-    GenServer.call(__MODULE__, :checksum)
+    {:ok, GenServer.call(__MODULE__, :checksum, 15)}
+  catch
+    :exit, {:timeout, _} ->
+      {:error, :timeout}
   end
 
   @impl true

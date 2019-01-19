@@ -1,21 +1,9 @@
 # Digits
 
-**TODO: Add description**
+## Regarding BONUS
 
-## Installation
-
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `digits` to your list of dependencies in `mix.exs`:
-
-```elixir
-def deps do
-  [
-    {:digits, "~> 0.1.0"}
-  ]
-end
-```
-
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at [https://hexdocs.pm/digits](https://hexdocs.pm/digits).
-
+The most obvious way to address timeout in call to GenServer is `GenServer.call/3`
+third argument.
+But using this mechanism on "read" (checksum computation does not alter state) 
+operation has consequences:
+if checksum is not computed within timeout, state is lost!
