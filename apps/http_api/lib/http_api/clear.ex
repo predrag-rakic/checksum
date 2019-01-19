@@ -4,10 +4,12 @@ defmodule HttpApi.Clear do
 
   import Plug.Conn
 
+  alias HttpApi.DigitsClient
+
   plug :clear
 
   def clear(conn, _opts) do
-    :ok = Digits.clear()
+    :ok = DigitsClient.clear()
 
     send_resp(conn, 204, "")
   end

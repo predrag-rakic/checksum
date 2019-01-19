@@ -4,10 +4,12 @@ defmodule HttpApi.ComputeChecksum do
 
   import Plug.Conn
 
+  alias HttpApi.DigitsClient
+
   plug :compute
 
   def compute(conn, _opts) do
-    Digits.compute_checksum()
+    DigitsClient.compute_checksum()
     |> response(conn)
   end
 

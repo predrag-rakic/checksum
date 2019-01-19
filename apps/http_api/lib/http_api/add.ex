@@ -4,13 +4,14 @@ defmodule HttpApi.Add do
 
   import Plug.Conn
 
+  alias HttpApi.DigitsClient
+
   plug :add
 
   def add(conn, _opts) do
     conn.params
     |> Map.get("digits", "")
-    |> Digits.add()
-    |> IO.inspect(label: "SSSSSSSSSSS resp")
+    |> DigitsClient.add()
     |> case do
       {:ok, _} ->
         send_resp(conn, 204, "")

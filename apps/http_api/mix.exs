@@ -30,6 +30,7 @@ defmodule HttpApi.MixProject do
       # {:dep_from_git, git: "https://github.com/elixir-lang/my_dep.git", tag: "0.1.0"},
       {:digits, in_umbrella: true},
       {:plug_cowboy, "~> 2.0"},
+      {:mox, "~> 0.4.0", only: [:test]},
     ]
   end
 end
