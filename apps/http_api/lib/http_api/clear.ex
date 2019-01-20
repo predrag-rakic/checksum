@@ -9,7 +9,7 @@ defmodule HttpApi.Clear do
 
   alias HttpApi.DigitsClient
 
-  plug :clear
+  plug(:clear)
 
   def clear(conn, _opts) do
     :ok = DigitsClient.clear()

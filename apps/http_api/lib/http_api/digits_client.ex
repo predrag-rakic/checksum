@@ -5,13 +5,13 @@ defmodule HttpApi.DigitsClient do
   Also, compile time dispatch for application logic mocking.
   """
 
-if Mix.env == :test do
-  Mox.defmock(DigitsMock, for: Digits.Behaviour)
+  if Mix.env() == :test do
+    Mox.defmock(DigitsMock, for: Digits.Behaviour)
 
-  def engine, do: DigitsMock
-else
-  def engine, do: Digits
-end
+    def engine, do: DigitsMock
+  else
+    def engine, do: Digits
+  end
 
   def add(digits), do: engine().add(digits)
   def clear, do: engine().clear()

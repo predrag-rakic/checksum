@@ -7,16 +7,16 @@ defmodule HttpApi do
 
   use Plug.Router
 
-  plug Plug.Logger
-  plug :match
-  plug Plug.Parsers, parsers: [:json], json_decoder: Jason
-  plug :dispatch
+  plug(Plug.Logger)
+  plug(:match)
+  plug(Plug.Parsers, parsers: [:json], json_decoder: Jason)
+  plug(:dispatch)
 
-  get "/checksum", to: ComputeChecksum
+  get("/checksum", to: ComputeChecksum)
 
-  delete "/checksum", to: Clear
+  delete("/checksum", to: Clear)
 
-  patch "/checksum", to: Add
+  patch("/checksum", to: Add)
 
   match _ do
     send_resp(conn, 400, "oops")

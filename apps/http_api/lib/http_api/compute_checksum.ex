@@ -9,7 +9,7 @@ defmodule HttpApi.ComputeChecksum do
 
   alias HttpApi.DigitsClient
 
-  plug :compute
+  plug(:compute)
 
   def compute(conn, _opts) do
     DigitsClient.compute_checksum()

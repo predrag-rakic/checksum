@@ -9,7 +9,7 @@ defmodule HttpApi.Add do
 
   alias HttpApi.DigitsClient
 
-  plug :add
+  plug(:add)
 
   def add(conn, _opts) do
     conn.params

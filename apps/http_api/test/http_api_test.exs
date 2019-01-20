@@ -25,7 +25,7 @@ defmodule HttpApiTest do
 
     assert(
       conn.resp_body
-      |> Jason.decode!
+      |> Jason.decode!()
       |> Map.get("message")
       |> String.contains?("Error")
     )
@@ -56,7 +56,7 @@ defmodule HttpApiTest do
 
     assert(
       conn.resp_body
-      |> Jason.decode!
+      |> Jason.decode!()
       |> Map.get("checksum")
       |> is_integer()
     )
@@ -69,10 +69,11 @@ defmodule HttpApiTest do
 
     conn = test_conn(:get, nil, 504)
 
-    assert("Request timedout" ==
-      conn.resp_body
-      |> Jason.decode!
-      |> Map.get("message")
+    assert(
+      "Request timedout" ==
+        conn.resp_body
+        |> Jason.decode!()
+        |> Map.get("message")
     )
   end
 
