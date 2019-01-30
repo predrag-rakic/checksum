@@ -1,0 +1,19 @@
+version: v1.0
+name: Checksum pipeline
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu1804
+
+blocks:
+  - name: "Build"
+    task:
+      jobs:
+      - name: Test
+        commands:
+          - checkout
+          - ls -1
+          - mix do local.hex --force, local.rebar --force
+          - mix deps.get
+          - mix test
+
